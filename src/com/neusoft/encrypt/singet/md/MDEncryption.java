@@ -7,7 +7,9 @@ import java.security.NoSuchAlgorithmException;
 
 import org.apache.commons.lang.Validate;
 
-public class MDEncryption extends AbstractEncryption {
+import com.neusoft.encrypt.singet.Encryption;
+
+public class MDEncryption  implements Encryption<MDAlgorithm>{
 
 	@Override
 	public byte[] encrypt(byte[] plain, MDAlgorithm algorithm)
@@ -15,7 +17,7 @@ public class MDEncryption extends AbstractEncryption {
 		Validate.notNull(plain, "the plaint argument should not be null");
 		Validate.notNull(algorithm, "the algorithm should not be null");
 		if(algorithm == MDAlgorithm.MD4)
-			throw new NoSuchAlgorithmException("this method don,t support the "+algorithm.getAlogithmValue()+" md algorithm");
+			throw new NoSuchAlgorithmException("this method don't support the "+algorithm.getAlogithmValue()+" md algorithm");
 		MessageDigest msg = MessageDigest.getInstance(algorithm.getAlogithmValue());
 		return msg.digest(plain);
 	}
@@ -30,8 +32,8 @@ public class MDEncryption extends AbstractEncryption {
 
 	@Override
 	public byte[] encrypt(InputStream plain, MDAlgorithm algorithm)
-			throws IOException,NoSuchAlgorithmException {
+			throws IOException, NoSuchAlgorithmException {
 		throw new UnsupportedOperationException("encrypt cann't support this method");
 	}
-	
+
 }

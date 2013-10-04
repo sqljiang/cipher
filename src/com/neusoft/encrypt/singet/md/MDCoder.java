@@ -7,7 +7,9 @@ import java.security.NoSuchAlgorithmException;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.Validate;
 
-public class MDCoder extends AbstractEncryption {
+import com.neusoft.encrypt.singet.Encryption;
+
+public class MDCoder implements Encryption<MDAlgorithm> {
 	@Override
 	public byte[] encrypt(byte[] plain,MDAlgorithm algorithm)throws NoSuchAlgorithmException{
 		Validate.notNull(plain, "the plaint argument should not be null");
@@ -20,7 +22,7 @@ public class MDCoder extends AbstractEncryption {
 			case MD5 :
 				return DigestUtils.md5(plain);
 			default :
-				throw new NoSuchAlgorithmException("this method don,t support the "+algorithm.getAlogithmValue()+" md algorithm");
+				throw new NoSuchAlgorithmException("this method don't support the "+algorithm.getAlogithmValue()+" md algorithm");
 		}
 	}
 	
@@ -43,7 +45,7 @@ public class MDCoder extends AbstractEncryption {
 			case MD5 :
 				return DigestUtils.md5(plain);
 			default :
-				throw new NoSuchAlgorithmException("this method don,t support the "+algorithm.getAlogithmValue()+" md algorithm");
+				throw new NoSuchAlgorithmException("this method don't support the "+algorithm.getAlogithmValue()+" md algorithm");
 		}
 	}
 	
