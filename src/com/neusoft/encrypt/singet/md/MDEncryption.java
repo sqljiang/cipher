@@ -2,6 +2,7 @@ package com.neusoft.encrypt.singet.md;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -33,7 +34,11 @@ public class MDEncryption  implements Encryption<MDAlgorithm>{
 	@Override
 	public byte[] encrypt(InputStream plain, MDAlgorithm algorithm)
 			throws IOException, NoSuchAlgorithmException {
-		throw new UnsupportedOperationException("encrypt cann't support this method");
+		DigestInputStream dis = null;
+		if(plain instanceof DigestInputStream) dis = (DigestInputStream) plain;
+		else  dis = new DigestInputStream(plain, MessageDigest.getInstance(algorithm.getAlogithmValue()));
+		MessageDigest msg = dis.getMessageDigest();
+		return msg.digest();
 	}
 
 }
