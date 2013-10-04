@@ -3,6 +3,7 @@ package com.neusoft.encrypt.singet.md;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.Validate;
 
@@ -61,6 +62,15 @@ public class MDCoder {
 			default :
 				throw new NotSuchMDAlgorithm("this method don,t support the "+algorithm.getAlogithmValue()+" md algorithm");
 		}
+	}
+	/**
+	 * byte array data transform to string .if array is null or it's length less or equal zero ,then return null.
+	 * @param bt
+	 * @return
+	 */
+	public String transform(byte[] bt){
+		if(bt == null || bt.length <= 0) return null;
+		return Hex.encodeHexString(bt);
 	}
 	
 }
