@@ -13,7 +13,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class AESCoder {
 	
-	private final String algorithm = "AES";
+	private final static String algorithm = "AES";
 	
 	private KeyLength len = KeyLength.MIN;
 	
