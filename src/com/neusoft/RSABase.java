@@ -95,7 +95,7 @@ public class RSABase {
 		}
 	}
 	
-	public static String buildPadding(PADDING padding){
+	public static String buildMode(PADDING padding){
 		StringBuilder sb = new StringBuilder();
 		sb.append("RSA").append("/");
 		sb.append("EBC").append("/");
